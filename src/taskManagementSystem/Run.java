@@ -2,7 +2,7 @@ package taskManagementSystem;
 import java.util.List;
 import java.util.Scanner;
 
-public class TaskApp {
+public class Run {
     public static void main(String[] args) {
         TaskManager taskManager = new TaskManager();
         Scanner scanner = new Scanner(System.in);
@@ -11,10 +11,10 @@ public class TaskApp {
 
         while (true) {
             System.out.println("\nChoose an operation:");
-            System.out.println("(S)how all current tasks");
-            System.out.println("(A)dd a new task");
-            System.out.println("(R)emove an existing task");
-            System.out.println("(E)xit");
+            System.out.println("(1)Show all current tasks");
+            System.out.println("(2)Add a new task");
+            System.out.println("(3)Remove an existing task");
+            System.out.println("(4)Exit");
 
             int choice = scanner.nextInt();
 
@@ -29,9 +29,10 @@ public class TaskApp {
                     removeTask(taskManager, scanner);
                     break;
                 case 4:
-                    System.out.println("You have succesfully exited the program.");
+                    System.out.println("Successfully exited the program.");
                     System.exit(0);
                     break;
+                    
                 default:
                     System.out.println("Invalid choice. Please try again.");
             }
@@ -55,7 +56,7 @@ public class TaskApp {
         int id = scanner.nextInt();
 
         System.out.println("Enter task name:");
-        scanner.nextLine(); // Consume the newline character
+        scanner.nextLine(); 
         String name = scanner.nextLine();
 
         System.out.println("Enter task description (optional):");
@@ -77,7 +78,7 @@ public class TaskApp {
         if (taskManager.removeTask(taskId)) {
             System.out.println("Task removed successfully!");
         } else {
-            System.out.println("Task with the given ID not found. No task removed.");
+            System.out.println("Task with the given ID is not found. No task removed.");
         }
     }
 }
