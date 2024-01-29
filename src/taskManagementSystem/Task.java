@@ -1,21 +1,34 @@
 package taskManagementSystem;
 
-public class Task {    //Fields
-	private int ID;
-	private String Name;
-	private String Description;
-	
-	
-	public Task(int ID, String Name, String Description) {
-		this.ID = ID;
-		this.Name = Name;
-		this.Description = Description;
-		
-	}
-	public Task(int ID, String Name) {
-		this.ID = ID;
-		this.Name = Name;
-		}
-	return String getID('');
-	
+
+//Declaring the required arrays
+public class Task {
+ private int id;
+ private String name;
+ private String description;
+
+ // Constructor with mandatory fields
+ public Task(int id, String name) {
+     this.id = id;
+     this.name = name;
+ }
+
+ // Constructor with all fields
+ public Task(int id, String name, String description) {
+     this(id, name);
+     this.description = description;
+ }
+
+ // Getters for the fields
+ public int getId() {
+     return id;
+ }
+
+ public String getName() {
+     return name;
+ }
+
+ public String getDescription() {
+     return description;
+ }
 }
