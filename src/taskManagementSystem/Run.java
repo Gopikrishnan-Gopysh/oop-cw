@@ -16,19 +16,19 @@ public class Run {
             System.out.println("(3)Remove an existing task");
             System.out.println("(4)Exit");
 
-            int choice = scanner.nextInt();
+            String choice = scanner.next();
 
             switch (choice) {
-                case 1:
+                case "1":
                     displayAllTasks(taskManager);
                     break;
-                case 2:
+                case "2":
                     addNewTask(taskManager, scanner);
                     break;
-                case 3:
+                case "3":
                     removeTask(taskManager, scanner);
                     break;
-                case 4:
+                case "4":
                     System.out.println("Successfully exited the program.");
                     System.exit(0);
                     break;
@@ -40,9 +40,12 @@ public class Run {
     }
 
     private static void displayAllTasks(TaskManager taskManager) {
+    	// Retrieves all task(s) from the TaskManager
         List<Task> tasks = taskManager.getAllTasks();
+        //if there are no tasks, run this
         if (tasks.isEmpty()) {
             System.out.println("No tasks available.");
+            //if there are task(s), run this
         } else {
             System.out.println("All current tasks:");
             for (Task task : tasks) {
@@ -52,7 +55,7 @@ public class Run {
     }
 
     private static void addNewTask(TaskManager taskManager, Scanner scanner) {
-        System.out.println("Enter task ID:");
+        System.out.println("Enter task ID number:");
         int id = scanner.nextInt();
 
         System.out.println("Enter task name:");
@@ -72,13 +75,13 @@ public class Run {
     }
 
     private static void removeTask(TaskManager taskManager, Scanner scanner) {
-        System.out.println("Enter the ID of the task to remove:");
+        System.out.println("Enter the ID number of the task to remove:");
         int taskId = scanner.nextInt();
 
         if (taskManager.removeTask(taskId)) {
             System.out.println("Task removed successfully!");
         } else {
-            System.out.println("Task with the given ID is not found. No task removed.");
+            System.out.println("Task with the given ID number is not found. No task removed.");
         }
     }
 }
