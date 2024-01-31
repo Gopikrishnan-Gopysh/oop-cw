@@ -55,14 +55,24 @@ public class Run {
     }
 
     private static void addNewTask(TaskManager taskManager, Scanner scanner) {
-        System.out.println("Enter task ID number:");
-        int id = scanner.nextInt();
+        System.out.print("Enter task ID number: ");
+        
+        int id;
+        try {
+        	id = scanner.nextInt();
+        }
+        catch (java.util.InputMismatchException e) {
+        	System.out.println("Invalid input.");
+        	return;
+        }
+        
 
-        System.out.println("Enter task name:");
+        System.out.print("Enter task name: ");
         scanner.nextLine(); 
-        String name = scanner.nextLine();
+        String name = scanner.next();
 
-        System.out.println("Enter task description (optional):");
+        scanner.nextLine();
+        System.out.print("Enter task description (optional): ");
         String description = scanner.nextLine();
 
         Task newTask = new Task(id, name, description);
@@ -70,7 +80,7 @@ public class Run {
         if (taskManager.addTask(newTask)) {
             System.out.println("Task added successfully!");
         } else {
-            System.out.println("Task with the same ID already exists. Task not added.");
+            System.out.println("Task not added. Task with the same ID already exists.");
         }
     }
 
@@ -81,7 +91,7 @@ public class Run {
         if (taskManager.removeTask(taskId)) {
             System.out.println("Task removed successfully!");
         } else {
-            System.out.println("Task with the given ID number is not found. No task removed.");
+            System.out.println(" No task removed. Task with the given ID number is not found.");
         }
     }
 }
