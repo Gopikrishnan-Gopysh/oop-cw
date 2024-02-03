@@ -25,16 +25,18 @@ public class TaskManager {
     }
 
     public boolean removeTask(int taskId) {
-        // Find task with the given ID and remove it
-        for (Task task : tasks) {
+        // Use iterator to safely remove elements while iterating
+        java.util.Iterator<Task> iterator = tasks.iterator();
+        while (iterator.hasNext()) {
+            Task task = iterator.next();
             if (task.getId() == taskId) {
-                tasks.remove(task);
+                iterator.remove();
                 return true; // Task removed successfully
             }
         }
         return false; // Task with the given ID not found
-    }
-
+    
+        }
     public int getSize() {
         return tasks.size();
     }
@@ -43,4 +45,5 @@ public class TaskManager {
         return tasks;
     }
 }
+
 

@@ -6,3 +6,8 @@ public class Run {
         TextGUI.show();
     }
 }
+
+
+//TODO 
+//LINE 28 IN TTM
+//LINE 64 IN TG

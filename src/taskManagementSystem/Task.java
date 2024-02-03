@@ -39,7 +39,7 @@ public class Task {
 // Generates textual representation
 @Override
 public String toString() {
-    return "Task ID number =" + id + ", Task name= " + name + ", Task description= " + description ;
+    return "Task ID number= " + id + ", Task name= " + name + ", Task description= " + description ;
 }
 
 // Equals and hashCode for comparing tasks based on ID
@@ -56,3 +56,4 @@ public int hashCode() {
     return Objects.hash(id);
 }
 }
+

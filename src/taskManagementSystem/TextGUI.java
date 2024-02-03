@@ -1,5 +1,4 @@
 package taskManagementSystem;
-
 import java.util.List;
 import java.util.Scanner;
 
@@ -56,40 +55,41 @@ public class TextGUI {
     }
 
     private static void addNewTask(TaskManager taskManager, Scanner scanner) {
-        System.out.print("Enter task ID number: ");
-        /*while (true)
-        try ｛
-        System. out print ("Id: ");
-        taskId = inputs.nextInt ();
-        if
-        (taskid > 0) break;
-        -
-        System. out. printin ("Can only enter postive numbers.");
-        System. out.printin();
-        catch (java.til. InputMismatchException e)
-        inputs.nextLine(): //Prevents an infinite loop.
-        System. out.printin ("Can only enter numbers.");
-        System. out.printin();
-        */
         int id;
-        try {
-        	id = scanner.nextInt();
-        	if (id > 0) {
-        		
-        	}
+
+        System.out.print("Enter task ID number: ");
+        while (true) {
+            try {
+                id = scanner.nextInt();
+                //HOW TO MAKE ALPHANUMERIC INVALID?
+
+                if (id > 0) {
+                    break; // Break out of the loop if a positive whole number is entered
+                } else {
+                    System.out.println("Invalid input. Please enter a positive whole number. ");
+                    System.out.print("Enter (H) to return to the homepage, or retry your request.");
+                    String goBackChoice = scanner.next();
+
+                    if (goBackChoice.equalsIgnoreCase("H")) {
+                        return; // Returning from the method will go back to the main page
+                    }
+                }
+            } catch (java.util.InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a positive whole number. ");
+                System.out.print("Enter (H) to return to the homepage, or retry your request.");
+                String goBackChoice = scanner.next();
+
+                if (goBackChoice.equalsIgnoreCase("H")) {
+                    return; // Returning from the method will go back to the main page
+                }
+            }
         }
-        catch (java.util.InputMismatchException e) {
-        	System.out.println("Invalid input. Please enter a positive whole number. ");
-        	return;
-        }
-        
 
         System.out.print("Enter task name: ");
-        scanner.nextLine(); 
-        String name = scanner.next();
+        scanner.nextLine(); // Consume the newline character
+        String name = scanner.nextLine();
 
-        scanner.nextLine();
-        System.out.print("Enter task description (optional): ");
+        System.out.print("Enter task description (Press enter to skip): ");
         String description = scanner.nextLine();
 
         Task newTask = new Task(id, name, description);
@@ -102,9 +102,28 @@ public class TextGUI {
     }
 
     private static void removeTask(TaskManager taskManager, Scanner scanner) {
-        System.out.println("Enter the ID number of the task to remove:");
-        int taskId = scanner.nextInt();
+        int taskId;
+        while (true) {
+            try {
+                System.out.print("Enter the ID number of the task to remove: ");
+                taskId = scanner.nextInt();
 
+                if (taskId > 0) {
+                    break; // Break out of the loop if a positive whole number is entered
+                } else {
+                    System.out.println("Invalid input. Please enter a positive whole number.");
+                }
+            } catch (java.util.InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a positive whole number.");
+                scanner.nextLine(); // Consume the invalid input to avoid an infinite loop
+                System.out.print("Enter (H) to return to the homepage, or retry your request.");
+                String goBackChoice = scanner.next();
+
+                if (goBackChoice.equalsIgnoreCase("H")) {
+                    return; // Returning from the method will go back to the main page
+                }
+            }
+        }
         if (taskManager.removeTask(taskId)) {
             System.out.println("Task removed successfully!");
         } else {
@@ -112,3 +131,4 @@ public class TextGUI {
         }
     }
 }
+
