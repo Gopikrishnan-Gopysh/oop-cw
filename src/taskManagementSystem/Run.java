@@ -8,6 +8,6 @@ public class Run {
 }
 
 
-//TODO 
-//LINE 28 IN TTM
-//LINE 64 IN TG
+/*Scan error in TG, have to enter values twice if i enter 0 or below (decimals work fine)
+ * hOW TO EXTEND TM TO ARRAYIST without warning( auto-genreated fix shows serial number(L1))
+*/

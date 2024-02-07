@@ -1,5 +1,4 @@
 package taskManagementSystem;
-import java.util.Objects;
 
 //Declaring the required arrays
 public class Task {
@@ -37,23 +36,9 @@ public class Task {
  }
 
 // Generates textual representation
-@Override
 public String toString() {
     return "Task ID number= " + id + ", Task name= " + name + ", Task description= " + description ;
 }
-
-// Equals and hashCode for comparing tasks based on ID
-@Override
-public boolean equals(Object obj) {
-    if (this == obj) return true;
-    if (obj == null || getClass() != obj.getClass()) return false;
-    Task task = (Task) obj;
-    return id == task.id;
 }
 
-@Override
-public int hashCode() {
-    return Objects.hash(id);
-}
-}
-
+ 

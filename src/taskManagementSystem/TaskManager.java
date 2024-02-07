@@ -2,16 +2,15 @@ package taskManagementSystem;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TaskManager {
-    private List<Task> tasks;
+public class TaskManager extends ArrayList<Task> {
 
     public TaskManager() {
-        this.tasks = new ArrayList<>();
+        super(); // Calls the constructor of the superclass (ArrayList)
     }
 
     public boolean addTask(Task newTask) {
         // Checks if task with the same ID already exists
-        for (Task existingTask : tasks) {
+        for (Task existingTask : this) {
             if (existingTask.getId() == newTask.getId()) {
             	// Task with the same ID already exists
                 return false; 
@@ -19,14 +18,14 @@ public class TaskManager {
         }
 
         // If not, add the new task
-        tasks.add(newTask);
+        this.add(newTask);
         // Task added successfully
         return true;
     }
 
     public boolean removeTask(int taskId) {
-        // Use iterator to safely remove elements while iterating
-        java.util.Iterator<Task> iterator = tasks.iterator();
+    	
+        java.util.Iterator<Task> iterator = this.iterator();
         while (iterator.hasNext()) {
             Task task = iterator.next();
             if (task.getId() == taskId) {
@@ -38,11 +37,11 @@ public class TaskManager {
     
         }
     public int getSize() {
-        return tasks.size();
+        return this.size();
     }
 
     public List<Task> getAllTasks() {
-        return tasks;
+        return this;
     }
 }
 
