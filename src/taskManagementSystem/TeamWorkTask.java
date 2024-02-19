@@ -12,11 +12,8 @@ public class TeamWorkTask extends WorkTask {
     public String getTeamName() {
         return teamName;
     }
-
-    // Override the generateTextRepresentation method
     @Override
-    public String generateTextRepresentation() {
-        return "Teamwork Task: [ID=" + getId() + ", Name=" + getName() + ", Description=" + getDescription() +
-                ", Team Name=" + getTeamName() + "]";
+    public String toString() {
+        return "Task ID number= " + getId() + ", Teamwork task name= " + getName() + ", Team name= " + teamName + ", Task description= " + getDescription();
     }
 }

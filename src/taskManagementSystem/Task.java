@@ -1,44 +1,47 @@
 package taskManagementSystem;
 
-//Declaring the required arrays
 public class Task {
- private int id;
- private String name;
- private String description;
+    private int id;
+    private String name;
+    private String hierarchy;
+    private String description;
 
- // Constructor with mandatory fields
- public Task(int id, String name) {
-     this.id = id;
-     this.name = name;
- }
+    // Constructor with mandatory fields
+    public Task(int id, String name, String hierarchy) {
+        this.id = id;
+        this.name = name;
+        this.hierarchy = hierarchy;
+    }
 
- // Constructor with all fields
- public Task(int id, String name, String description) {
-     this(id, name);
-     
-     if (description.strip().equals(""))	 
-    	 this.description = "No description.";
-     else
-    	 this.description = description;
- }
+    // Constructor with all fields
+    public Task(int id, String name, String description, String hierarchy) {
+        this(id, name, hierarchy);
 
- // Getters for the fields
- public int getId() {
-     return id;
- }
+        if (description.strip().equals(""))
+            this.description = "No description.";
+        else
+            this.description = description;
+    }
 
- public String getName() {
-     return name;
- }
+    // Getters for the fields
+    public int getId() {
+        return id;
+    }
 
- public String getDescription() {
-     return description;
- }
+    public String getName() {
+        return name;
+    }
 
-// Generates textual representation
-public String toString() {
-    return "Task ID number= " + id + ", Task name= " + name + ", Task description= " + description ;
+    public String getHierarchy() {
+        return hierarchy;
+    }
+    
+    public String getDescription() {
+        return description;
+    }
+ // Generates textual representation
+    public String toString() {
+        return "Task ID number= " + id + ", " + hierarchy + " Task name= " + name + ", Task description= " + description;
+    }
 }
-}
-
- 
+    

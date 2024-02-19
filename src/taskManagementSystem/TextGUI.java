@@ -115,7 +115,7 @@ public class TextGUI {
         if (taskManager.addTask(newTask)) {
             System.out.println("Personal Task added successfully!");
         } else {
-            System.out.println("Task not added. Task with the same ID already exists.");
+            System.out.println("Personal task not added. Task with the same ID already exists.");
         }
     }
 
@@ -132,7 +132,7 @@ public class TextGUI {
         if (taskManager.addTask(newTask)) {
             System.out.println("Work Task added successfully!");
         } else {
-            System.out.println("Task not added. Task with the same ID already exists.");
+            System.out.println("Work task not added. Task with the same ID already exists.");
         }
     }
 
@@ -152,7 +152,7 @@ public class TextGUI {
         if (taskManager.addTask(newTask)) {
             System.out.println("Teamwork Task added successfully!");
         } else {
-            System.out.println("Task not added. Task with the same ID already exists.");
+            System.out.println("Teamwork task not added. Task with the same ID already exists.");
         }
     }
 
@@ -186,4 +186,3 @@ public class TextGUI {
         }
     }
 }
-
