@@ -8,13 +8,12 @@ class TestTaskManager {
         // Creates a TaskManager instance
         TaskManager taskManager = new TaskManager();
         // Creates two tasks with different IDs
-        Task task1 = new Task(1, "Task 1", "Description 1");
-        Task task2 = new Task(2, "Task 2", "Description 2");
+        Task task1 = new PersonalTask(1, "Task 1", "Personal Description");
+        Task task2 = new WorkTask(2, "Task 2", "Work Description");
 
         // Test for adding task to the TaskManager
         assertTrue(taskManager.addTask(task1));
-        // Adding the same task should return false
-        assertFalse(taskManager.addTask(task1));
+        assertFalse(taskManager.addTask(task1)); // Adding the same task should return false
         assertTrue(taskManager.addTask(task2));
 
         // Add PersonalTask, WorkTask, TeamWorkTask
@@ -25,12 +24,11 @@ class TestTaskManager {
 
     @Test
     void testRemoveTask() {
-    	//HOW TO FIX ERROR?
         // Creates a TaskManager instance
         TaskManager taskManager = new TaskManager();
         // Create two tasks with different IDs
-        Task task1 = new Task(1, "Task 1", "Description 1");
-        Task task2 = new Task(2, "Task 2", "Description 2");
+        Task task1 = new PersonalTask(1, "Task 1", "Personal Description");
+        Task task2 = new WorkTask(2, "Task 2", "Work Description");
 
         // Adds tasks to the TaskManager
         taskManager.addTask(task1);
@@ -38,17 +36,19 @@ class TestTaskManager {
 
         // Test for removing tasks from the TaskManager
         assertTrue(taskManager.removeTask(1));
-        // Removing the same task again should return false
-      //  assertFalse(taskManager.removeTask(1));
+        assertFalse(taskManager.removeTask(1)); // Removing the same task again should return false
         assertTrue(taskManager.removeTask(2));
-        // Removing non-existent task should return false
-        assertFalse(taskManager.removeTask(3));
+        assertFalse(taskManager.removeTask(3)); // Removing non-existent task should return false
+        
+     // Remove PersonalTask, WorkTask, TeamWorkTask
+        taskManager.addTask(new PersonalTask(4, "Personal Task", "Personal Description"));
+        taskManager.addTask(new WorkTask(5, "Work Task", "Work Description"));
+        taskManager.addTask(new TeamWorkTask(6, "TeamWork Task", "TeamWork Description", "Team A"));
 
-        // Remove PersonalTask, WorkTask, TeamWorkTask
         assertTrue(taskManager.removeTask(4));
         assertTrue(taskManager.removeTask(5));
         // Removing non-existent task should return false
-        assertFalse(taskManager.removeTask(6));
+        assertFalse(taskManager.removeTask(7));
     }
 
     @Test
@@ -56,8 +56,8 @@ class TestTaskManager {
         // Creates a TaskManager instance
         TaskManager taskManager = new TaskManager();
         // Creates two tasks with different IDs
-        Task task1 = new Task(1, "Task 1", "Description 1");
-        Task task2 = new Task(2, "Task 2", "Description 2");
+        Task task1 = new PersonalTask(1, "Task 1", "Personal Description");
+        Task task2 = new WorkTask(2, "Task 2", "Work Description");
 
         // Test for getting the size of the TaskManager
         assertEquals(0, taskManager.getSize());
@@ -89,8 +89,8 @@ class TestTaskManager {
         // Creates a TaskManager instance
         TaskManager taskManager = new TaskManager();
         // Creates two tasks with different IDs
-        Task task1 = new Task(1, "Task 1", "Description 1");
-        Task task2 = new Task(2, "Task 2", "Description 2");
+        Task task1 = new PersonalTask(1, "Task 1", "Personal Description");
+        Task task2 = new WorkTask(2, "Task 2", "Work Description");
 
         // Adding tasks to the TaskManager
         taskManager.addTask(task1);

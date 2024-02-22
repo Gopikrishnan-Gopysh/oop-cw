@@ -1,6 +1,6 @@
 package taskManagementSystem;
 
-public class Task {
+public abstract class Task {
     private int id;
     private String name;
     private String hierarchy;
@@ -22,6 +22,8 @@ public class Task {
         else
             this.description = description;
     }
+    
+
 
     // Getters for the fields
     public int getId() {
@@ -43,5 +45,31 @@ public class Task {
     public String toString() {
         return "Task ID number= " + id + ", " + hierarchy + " Task name= " + name + ", Task description= " + description;
     }
+    // Convert a task to a string representation
+    public String taskToString() {
+        return id + "," + name + "," + description + "," + hierarchy;
+    }
+
+    // Create a task from a string
+    public static Task stringToTask(String taskString) {
+        String[] taskData = taskString.split(",");
+        int id = Integer.parseInt(taskData[0]);
+        String name = taskData[1];
+        String description = taskData[2];
+        String hierarchy = taskData[3];
+
+        // Create a task based on the hierarchy type
+        if (hierarchy.equals("Work")) {
+            return new WorkTask(id, name, description);
+        } else if (hierarchy.equals("Team")) {
+
+            String teamName = taskData[4];
+            return new TeamWorkTask(id, name, description, teamName);
+        } else {
+           
+            return new PersonalTask(id, name, description);
+        }
+    }
 }
+
     

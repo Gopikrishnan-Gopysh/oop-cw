@@ -11,7 +11,7 @@ public class TaskManager extends ArrayList<Task> {
     public boolean addTask(Task newTask) {
         // Checks if task with the same ID already exists
         for (Task existingTask : this) {
-            if (existingTask.getId() == newTask.getId()) {
+    	if (existingTask != null && existingTask.getId() == newTask.getId()) {
             	// Task with the same ID already exists
                 return false; 
             }
@@ -24,7 +24,7 @@ public class TaskManager extends ArrayList<Task> {
     }
 
     public boolean removeTask(int taskId) {
-    	
+    	//An iterator is an object that can traverse through all the values step by step.
         java.util.Iterator<Task> iterator = this.iterator();
         while (iterator.hasNext()) {
             Task task = iterator.next();

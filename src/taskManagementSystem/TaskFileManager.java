@@ -1,0 +1,48 @@
+package taskManagementSystem;
+
+import java.io.*;
+
+public class TaskFileManager {
+
+    public static void saveTasksToFile(TaskManager taskManager, String fileName) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            for (Task task : taskManager.getAllTasks()) {
+                writer.write(taskToString(task));
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("Error saving tasks to file: " + e.getMessage());
+        }
+    }
+    
+    private static String taskToString(Task task) {
+        return task.taskToString();
+    }
+
+    public static void readTasksFromFile(TaskManager taskManager, String fileName) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            int lineNumber = 0;
+            while ((line = reader.readLine()) != null) {
+                lineNumber++;
+                try {
+                    Task task = stringToTask(line);
+                    if (task != null) {
+                        taskManager.addTask(task);
+                    }
+                } catch (Exception e) {
+                    System.err.println("Error parsing line " + lineNumber + ": " + line);
+                    e.printStackTrace();
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("Error reading tasks from file: " + e.getMessage());
+        }
+    }
+
+    private static Task stringToTask(String taskString) {
+        return Task.stringToTask(taskString);
+    }
+}

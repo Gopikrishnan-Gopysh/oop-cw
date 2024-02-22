@@ -6,15 +6,18 @@ public class TextGUI {
     public static void show() {
         TaskManager taskManager = new TaskManager();
         Scanner scanner = new Scanner(System.in);
+        
+     // Load tasks from file at the beginning of the program
+        TaskFileManager.readTasksFromFile(taskManager, "tasks.dat");
 
         System.out.println("Welcome to Task Manager!");
-
         while (true) {
             System.out.println("\nChoose an operation:");
             System.out.println("(1) Show all current tasks");
             System.out.println("(2) Add a new task");
             System.out.println("(3) Remove an existing task");
-            System.out.println("(4) Exit");
+            System.out.println("(4) Save tasks to file and exit");
+            System.out.println("(5) Load tasks from file and continue");
 
             String choice = scanner.next();
 
@@ -29,8 +32,15 @@ public class TextGUI {
                     removeTask(taskManager, scanner);
                     break;
                 case "4":
-                    System.out.println("Successfully exited the program.");
+                	TaskFileManager.saveTasksToFile(taskManager, "tasks.dat"); //.dat is a generic extension to store files without a particular format
+                    System.out.println("Successfully saved tasks to file and exited the program.");
                     System.exit(0);
+                    break;
+                case "5":
+                    System.out.println("Successfully loaded tasks from file.");
+
+                    // Print reminder messages
+                    printReminderMessages(taskManager);
                     break;
                 default:
                     System.out.println("Invalid choice. Please try again.");
@@ -183,6 +193,15 @@ public class TextGUI {
             System.out.println("Task removed successfully!");
         } else {
             System.out.println(" No task removed. Task with the given ID number is not found.");
+        }
+    }
+    private static void printReminderMessages(TaskManager taskManager) {
+        System.out.println("\nReminder messages:");
+        for (Task task : taskManager.getAllTasks()) {
+            if (task instanceof Remindable) {     
+                ((Remindable) task).remindUser();
+            
+            }
         }
     }
 }

@@ -1,7 +1,7 @@
 package taskManagementSystem;
 
 // Subclass of WorkTask representing teamwork tasks
-public class TeamWorkTask extends WorkTask {
+public class TeamWorkTask extends WorkTask implements Remindable{
     private String teamName;
 
     public TeamWorkTask(int id, String name, String description, String teamName) {
@@ -15,5 +15,9 @@ public class TeamWorkTask extends WorkTask {
     @Override
     public String toString() {
         return "Task ID number= " + getId() + ", Teamwork task name= " + getName() + ", Team name= " + teamName + ", Task description= " + getDescription();
+    }
+    @Override
+    public void remindUser() {
+        System.out.println("Teamwork task: " + getName() + " (Team: " + getTeamName() + ")");
     }
 }
