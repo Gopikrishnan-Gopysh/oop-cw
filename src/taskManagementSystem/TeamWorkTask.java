@@ -4,8 +4,8 @@ package taskManagementSystem;
 public class TeamWorkTask extends WorkTask implements Remindable{
     private String teamName;
 
-    public TeamWorkTask(int id, String name, String description, String teamName) {
-        super(id, name, description,"Teamwork1");
+    public TeamWorkTask(int id, String name, String teamName, String description) {
+        super(id, name, description,"Teamwork");
         this.teamName = teamName;
     }
 
@@ -14,10 +14,10 @@ public class TeamWorkTask extends WorkTask implements Remindable{
     }
     @Override
     public String taskToString() {
-        return getId() + "," + getDescription() + "," + getHierarchy() + "," + getName() + "," + getDescription() + this.teamName;
+        return getId() + "," + getHierarchy() + "," + getName() + "," + getDescription() + "," + this.teamName;
     }
     public String toString() {
-        return "Task ID number= " + getId() + ", " + getHierarchy() + " task name= " + getName() + ", " + " Teamname= " + this.teamName + ", Task description= " + getDescription();
+        return "Task ID number= " + getId() + ", " + getHierarchy() + " task name= " + getName() + ", Teamname= " + this.teamName + ", Task description= " + getDescription();
     }
     @Override
     public void remindUser() {

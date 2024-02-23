@@ -131,7 +131,7 @@ public class TextGUI {
         if (taskManager.addTask(newTask)) {
             System.out.println("Personal Task added successfully!");
         } else {
-            System.out.println("Personal task not added. Task with the same ID already exists.");
+            System.out.println("Task not added. Personal Task with the same ID already exists.");
         }
     }
 
@@ -148,7 +148,7 @@ public class TextGUI {
         if (taskManager.addTask(newTask)) {
             System.out.println("Work Task added successfully!");
         } else {
-            System.out.println("Work task not added. Task with the same ID already exists.");
+            System.out.println("Task not added. Work task with the same ID already exists.");
         }
     }
 
@@ -168,7 +168,7 @@ public class TextGUI {
         if (taskManager.addTask(newTask)) {
             System.out.println("Teamwork Task added successfully!");
         } else {
-            System.out.println("Teamwork task not added. Task with the same ID already exists.");
+            System.out.println("Task not added. Teamwork task with the same ID already exists.");
         }
     }
 
@@ -202,13 +202,14 @@ public class TextGUI {
         }
     }
     private static void printReminderMessages(TaskManager taskManager) {
-        System.out.println("\nReminder messages:");
+        System.out.println("\nReminder messages:" + taskManager.size());
         for (Task task : taskManager.getAllTasks()) {
             if (task instanceof Remindable) {  
             	if (task instanceof TeamWorkTask) {
             		((TeamWorkTask)(Remindable) task).remindUser();
+            	} else {
+            		((Remindable) task).remindUser();
             	}
-                ((Remindable) task).remindUser();
             
             }
         }

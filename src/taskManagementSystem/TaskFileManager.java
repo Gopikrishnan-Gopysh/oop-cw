@@ -7,7 +7,7 @@ public class TaskFileManager {
     public static void saveTasksToFile(TaskManager taskManager, String fileName) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             for (Task task : taskManager.getAllTasks()) {
-                writer.write(taskToString(task));
+        		writer.write(taskToString(task));
                 writer.newLine();
             }
         } catch (IOException e) {
@@ -17,7 +17,12 @@ public class TaskFileManager {
     }
     
     private static String taskToString(Task task) {
-        return task.taskToString();
+       	if (task instanceof TeamWorkTask) {  
+       		return ((TeamWorkTask) task).taskToString();
+    	} else {
+    		return task.taskToString();
+    	}
+       
     }
 
     public static void readTasksFromFile(TaskManager taskManager, String fileName) {

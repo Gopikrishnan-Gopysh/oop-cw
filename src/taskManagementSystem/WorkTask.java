@@ -6,8 +6,8 @@ public class WorkTask extends Task implements Remindable{
     	super(id, name, description, "Work");
     }
     
-    public WorkTask(int id, String name, String description, String hierarchy) {
-    	super(id, name, description, hierarchy);
+    public WorkTask(int id, String hierarchy, String name, String description) {
+    	super(id,hierarchy, name, description);
     }
 	public void remindUser() {
 		System.out.println("Work task: " + getName());
