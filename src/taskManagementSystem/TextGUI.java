@@ -8,7 +8,7 @@ public class TextGUI {
         Scanner scanner = new Scanner(System.in);
         
      // Load tasks from file at the beginning of the program
-        TaskFileManager.readTasksFromFile(taskManager, "tasks.dat");
+        TaskFileManager.readTasksFromFile(taskManager, "tasks.dat");//.dat is a generic extension to store files without a particular format
 
         System.out.println("Welcome to Task Manager!");
         while (true) {
@@ -32,7 +32,7 @@ public class TextGUI {
                     removeTask(taskManager, scanner);
                     break;
                 case "4":
-                	TaskFileManager.saveTasksToFile(taskManager, "tasks.dat"); //.dat is a generic extension to store files without a particular format
+                	TaskFileManager.saveTasksToFile(taskManager, "tasks.dat"); 
                     System.out.println("Successfully saved tasks to file and exited the program.");
                     System.exit(0);
                     break;
@@ -61,23 +61,28 @@ public class TextGUI {
     }
 
     private static void addNewTask(TaskManager taskManager, Scanner scanner) {
-        int id;
-
+        String idString = null;
+        int err = 0;
+        //if correcrt
         System.out.print("Enter task ID number: ");
         while (true) {
             try {
-                id = scanner.nextInt();
+                idString = scanner.next();
 
-                if (id > 0) {
+                if (idString.matches("^[1-9][0-9]*$")) { //regular expression (^ = start, [1-9] any no from 1-9, same for [0-9], * = 0 or more times, $ = end)
                     break;
-                } else {
-                    System.out.println("Invalid input. Please enter a positive whole number.");
-                    System.out.print("Enter (H) to return to the homepage, or retry your request.");
-                    String goBackChoice = scanner.next();
-
-                    if (goBackChoice.equalsIgnoreCase("H")) {
+                } 
+                
+                else {
+                	if (idString.equalsIgnoreCase("H")&& err==1) {
                         return;
                     }
+                
+	                else {
+	                    System.out.println("Invalid input. Please enter a positive whole number.");
+	                    System.out.print("Enter (H) to return to the homepage, or retry your request.");
+	                    err=1;
+	                }
                 }
             } catch (java.util.InputMismatchException e) {
                 System.out.println("Invalid input. Please enter a positive whole number.");
@@ -90,6 +95,7 @@ public class TextGUI {
             }
         }
 
+       int id = Integer.parseInt(idString);
         System.out.println("Choose the task hierarchy:");
         System.out.println("(1) Personal Task");
         System.out.println("(2) Work Task");
@@ -198,7 +204,10 @@ public class TextGUI {
     private static void printReminderMessages(TaskManager taskManager) {
         System.out.println("\nReminder messages:");
         for (Task task : taskManager.getAllTasks()) {
-            if (task instanceof Remindable) {     
+            if (task instanceof Remindable) {  
+            	if (task instanceof TeamWorkTask) {
+            		((TeamWorkTask)(Remindable) task).remindUser();
+            	}
                 ((Remindable) task).remindUser();
             
             }

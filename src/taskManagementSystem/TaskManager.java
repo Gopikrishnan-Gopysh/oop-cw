@@ -9,10 +9,15 @@ public class TaskManager extends ArrayList<Task> {
     }
 
     public boolean addTask(Task newTask) {
+        // Check for null newTask
+        if (newTask == null) {
+            throw new IllegalArgumentException("Task cannot be null");
+        }
+
         // Checks if task with the same ID already exists
         for (Task existingTask : this) {
-    	if (existingTask != null && existingTask.getId() == newTask.getId()) {
-            	// Task with the same ID already exists
+            if (existingTask != null && existingTask.getId() == newTask.getId()) {
+                // Task with the same ID already exists
                 return false; 
             }
         }
@@ -24,18 +29,22 @@ public class TaskManager extends ArrayList<Task> {
     }
 
     public boolean removeTask(int taskId) {
-    	//An iterator is an object that can traverse through all the values step by step.
+        // Validate taskId
+        if (taskId < 0) {
+            throw new IllegalArgumentException("Task ID must be greater than or equal to 0");
+        }
+
+        // An iterator is an object that can traverse through all the values step by step.
         java.util.Iterator<Task> iterator = this.iterator();
         while (iterator.hasNext()) {
             Task task = iterator.next();
-            if (task.getId() == taskId) {
+            if (task != null && task.getId() == taskId) {
                 iterator.remove();
                 return true; // Task removed successfully
             }
         }
         return false; // Task with the given ID not found
-    
-        }
+    }
     public int getSize() {
         return this.size();
     }
