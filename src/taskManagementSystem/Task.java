@@ -22,7 +22,7 @@ public abstract class Task {
         else
             this.description = description;
     }
-    
+
     // Getters for the fields
     public int getId() {
         return id;
@@ -36,7 +36,7 @@ public abstract class Task {
     public String getDescription() {
         return description;
     }
- // Generates textual representation
+    // Generates textual representation
     public String toString() {
         return "Task ID number= " + id + ", " + hierarchy + " Task name= " + name + ", Task description= " + description;
     }
@@ -52,21 +52,15 @@ public abstract class Task {
         String hierarchy = taskData[1];
         String name = taskData[2];
         String description = taskData[3];
-        
-        System.out.println("Hello :" + hierarchy);
 
         // Create a task based on the hierarchy type
         if (hierarchy.equals("Work")) {
-            System.out.println("Hello1 :" + hierarchy);
             return new WorkTask(id, name, description);
         } else if (hierarchy.equals("Teamwork")) {
             String teamName = taskData[4];
-            System.out.println("Hello2 :" + hierarchy);            
             return new TeamWorkTask(id, name, teamName, description);
         } else {
             return new PersonalTask(id, name, description);
         }
     }
 }
-
-    

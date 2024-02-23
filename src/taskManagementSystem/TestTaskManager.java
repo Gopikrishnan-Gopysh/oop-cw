@@ -39,8 +39,8 @@ class TestTaskManager {
         assertFalse(taskManager.removeTask(1)); // Removing the same task again should return false
         assertTrue(taskManager.removeTask(2));
         assertFalse(taskManager.removeTask(3)); // Removing non-existent task should return false
-        
-     // Remove PersonalTask, WorkTask, TeamWorkTask
+
+        // Remove PersonalTask, WorkTask, TeamWorkTask
         taskManager.addTask(new PersonalTask(4, "Personal Task", "Personal Description"));
         taskManager.addTask(new WorkTask(5, "Work Task", "Work Description"));
         taskManager.addTask(new TeamWorkTask(6, "TeamWork Task", "TeamWork Description", "Team A"));
