@@ -1,11 +1,11 @@
 package taskManagementSystem;
 
 // Subclass of WorkTask representing teamwork tasks
-public class TeamWorkTask extends WorkTask implements Remindable {
+public class TeamWorkTask extends WorkTask implements Remindable{
     private String teamName;
 
     public TeamWorkTask(int id, String name, String teamName, String description) {
-        super(id, name, description, "Teamwork");
+        super(id, name, description,"Teamwork");
         this.teamName = teamName;
     }
 

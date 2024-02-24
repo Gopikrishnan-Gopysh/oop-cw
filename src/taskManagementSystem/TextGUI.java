@@ -16,8 +16,7 @@ public class TextGUI {
             System.out.println("(1) Show all current tasks");
             System.out.println("(2) Add a new task");
             System.out.println("(3) Remove an existing task");
-            System.out.println("(4) Save tasks to file and exit");
-            System.out.println("(5) Load tasks from file and continue");
+            System.out.println("(4) Exit the program");
 
             String choice = scanner.next();
 
@@ -36,12 +35,6 @@ public class TextGUI {
                     System.out.println("Successfully saved tasks to file and exited the program.");
                     System.exit(0);
                     break;
-                case "5":
-                    System.out.println("Successfully loaded tasks from file.");
-
-                    // Print reminder messages
-                    printReminderMessages(taskManager);
-                    break;
                 default:
                     System.out.println("Invalid choice. Please try again.");
             }
@@ -56,6 +49,18 @@ public class TextGUI {
             System.out.println("All current tasks:");
             for (Task task: tasks) {
                 System.out.println(task);
+            }
+            System.out.println("\nReminder messages:" + taskManager.size());
+            for (Task task: taskManager.getAllTasks()) {
+                // If the task is a TeamWorkTask, cast it accordingly before invoking remindUser()
+                if (task instanceof Remindable) {
+                    if (task instanceof TeamWorkTask) {
+                        ((TeamWorkTask)(Remindable) task).remindUser();
+                    } else {
+                        // If the task is a regular Remindable, invoke remindUser()
+                        ((Remindable) task).remindUser();
+                    }
+                }
             }
         }
     }
@@ -195,22 +200,7 @@ public class TextGUI {
         if (taskManager.removeTask(taskId)) {
             System.out.println("Task removed successfully!");
         } else {
-            System.out.println(" No task removed. Task with the given ID number is not found.");
-        }
-    }
-    private static void printReminderMessages(TaskManager taskManager) {
-        System.out.println("\nReminder messages:" + taskManager.size());
-        for (Task task: taskManager.getAllTasks()) {
-            // If the task is a TeamWorkTask, cast it accordingly before invoking remindUser()
-            if (task instanceof Remindable) {
-                if (task instanceof TeamWorkTask) {
-                    ((TeamWorkTask)(Remindable) task).remindUser();
-                } else {
-                    // If the task is a regular Remindable, invoke remindUser()
-                    ((Remindable) task).remindUser();
-                }
-
-            }
+            System.out.println("No task removed. Task with the given ID number is not found.");
         }
     }
 }

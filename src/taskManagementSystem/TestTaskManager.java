@@ -1,6 +1,10 @@
 package taskManagementSystem;
+
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import java.io.*;
+import java.util.List;
+
 class TestTaskManager {
 
     @Test
@@ -20,6 +24,9 @@ class TestTaskManager {
         assertTrue(taskManager.addTask(new PersonalTask(3, "Personal Task", "Personal Description")));
         assertTrue(taskManager.addTask(new WorkTask(4, "Work Task", "Work Description")));
         assertTrue(taskManager.addTask(new TeamWorkTask(5, "TeamWork Task", "TeamWork Description", "Team A")));
+        
+        // Additional test for saving and reading tasks from file
+        testSaveAndReadTasks();
     }
 
     @Test
@@ -39,7 +46,7 @@ class TestTaskManager {
         assertFalse(taskManager.removeTask(1)); // Removing the same task again should return false
         assertTrue(taskManager.removeTask(2));
         assertFalse(taskManager.removeTask(3)); // Removing non-existent task should return false
-
+        
         // Remove PersonalTask, WorkTask, TeamWorkTask
         taskManager.addTask(new PersonalTask(4, "Personal Task", "Personal Description"));
         taskManager.addTask(new WorkTask(5, "Work Task", "Work Description"));
@@ -49,6 +56,9 @@ class TestTaskManager {
         assertTrue(taskManager.removeTask(5));
         // Removing non-existent task should return false
         assertFalse(taskManager.removeTask(7));
+        
+        // Additional test for saving and reading tasks from file
+        testSaveAndReadTasks();
     }
 
     @Test
@@ -82,6 +92,9 @@ class TestTaskManager {
 
         taskManager.removeTask(4);
         assertEquals(3, taskManager.getSize());
+        
+        // Additional test for saving and reading tasks from file
+        testSaveAndReadTasks();
     }
 
     @Test
@@ -108,5 +121,49 @@ class TestTaskManager {
 
         // Test for getting all tasks including PersonalTask, WorkTask, TeamWorkTask
         assertEquals(5, taskManager.getAllTasks().size());
+        
+        // Additional test for saving and reading tasks from file
+        testSaveAndReadTasks();
+    }
+
+    @Test
+    void testSaveAndReadTasks() {
+        // Creates a TaskManager instance
+        TaskManager taskManager = new TaskManager();
+
+        // Adds some tasks to the TaskManager
+        taskManager.addTask(new PersonalTask(1, "Task 1", "Personal Description"));
+        taskManager.addTask(new WorkTask(2, "Task 2", "Work Description"));
+        taskManager.addTask(new TeamWorkTask(3, "Task 3", "Team A", "TeamWork Description"));
+
+        // Define the test file name for saving and reading tasks
+        String testFileName = "test_tasks_io.dat";
+
+        try {
+            // Save tasks to file
+            TaskFileManager.saveTasksToFile(taskManager, testFileName);
+
+            // Create a new TaskManager to load tasks into
+            TaskManager loadedTaskManager = new TaskManager();
+
+            // Read tasks from file
+            TaskFileManager.readTasksFromFile(loadedTaskManager, testFileName);
+
+            // Verify that the loaded TaskManager contains the same tasks
+            List<Task> expectedTasks = taskManager.getAllTasks();
+            List<Task> actualTasks = loadedTaskManager.getAllTasks();
+
+            assertEquals(expectedTasks.size(), actualTasks.size());
+
+            for (int i = 0; i < expectedTasks.size(); i++) {
+                assertEquals(expectedTasks.get(i).taskToString(), actualTasks.get(i).taskToString());
+            }
+        } finally {
+            // Cleanup: Delete the test file after the test
+            File testFile = new File(testFileName);
+            if (testFile.exists()) {
+                testFile.delete();
+            }
+        }
     }
 }

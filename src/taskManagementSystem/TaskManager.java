@@ -2,7 +2,7 @@ package taskManagementSystem;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TaskManager extends ArrayList < Task > {
+public class TaskManager extends ArrayList<Task> {
 
     public TaskManager() {
         super(); // Calls the constructor of the superclass (ArrayList)
@@ -15,10 +15,10 @@ public class TaskManager extends ArrayList < Task > {
         }
 
         // Checks if task with the same ID already exists
-        for (Task existingTask: this) {
+        for (Task existingTask : this) {
             if (existingTask != null && existingTask.getId() == newTask.getId()) {
                 // Task with the same ID already exists
-                return false;
+                return false; 
             }
         }
 
@@ -35,7 +35,7 @@ public class TaskManager extends ArrayList < Task > {
         }
 
         // An iterator is an object that can traverse through all the values step by step.
-        java.util.Iterator < Task > iterator = this.iterator();
+        java.util.Iterator<Task> iterator = this.iterator();
         while (iterator.hasNext()) {
             Task task = iterator.next();
             if (task != null && task.getId() == taskId) {
@@ -49,7 +49,7 @@ public class TaskManager extends ArrayList < Task > {
         return this.size();
     }
 
-    public List < Task > getAllTasks() {
+    public List<Task> getAllTasks() {
         return this;
     }
 }
