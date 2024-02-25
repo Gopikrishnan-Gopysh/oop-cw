@@ -7,13 +7,13 @@ public class TaskFileManager {
     public static void saveTasksToFile(TaskManager taskManager, String fileName) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             // Iterate through all tasks in the TaskManager
-            for (Task task: taskManager.getAllTasks()) {
-                writer.write(taskToString(task));
+            for (Task eachTask: taskManager.getAllTasks()) {
+                writer.write(taskToString(eachTask));
                 writer.newLine();
             }
         } catch (IOException e) {
             // Handle IOException during file writing
-            e.printStackTrace();
+            e.printStackTrace(); //for debugging purposes
             System.err.println("Error saving tasks to file: " + e.getMessage());
         }
     }
@@ -40,17 +40,18 @@ public class TaskFileManager {
                 lineNumber++;
                 // Convert the string representation of the task to a Task object and add it to the TaskManager
                 try {
-                    Task task = stringToTask(line);
-                    if (task != null) {
-                        taskManager.addTask(task);
+                    Task eachTask = stringToTask(line);
+                    if (eachTask != null) {
+                        taskManager.addTask(eachTask);
                     }
                 } catch (Exception e) {
-                    System.err.println("Error parsing line " + lineNumber + ": " + line);
+                	//for debugging purposes
+                    System.err.println("Error parsing line " + lineNumber + ": " + line); 
                     e.printStackTrace();
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            e.printStackTrace(); //for debugging purposes
             System.err.println("Error reading tasks from file: " + e.getMessage());
         }
     }

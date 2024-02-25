@@ -12,13 +12,13 @@ class TestTaskManager {
         // Creates a TaskManager instance
         TaskManager taskManager = new TaskManager();
         // Creates two tasks with different IDs
-        Task task1 = new PersonalTask(1, "Task 1", "Personal Description");
-        Task task2 = new WorkTask(2, "Task 2", "Work Description");
+        Task eachTask1 = new PersonalTask(1, "Task 1", "Personal Description");
+        Task eachTask2 = new WorkTask(2, "Task 2", "Work Description");
 
         // Test for adding task to the TaskManager
-        assertTrue(taskManager.addTask(task1));
-        assertFalse(taskManager.addTask(task1)); // Adding the same task should return false
-        assertTrue(taskManager.addTask(task2));
+        assertTrue(taskManager.addTask(eachTask1));
+        assertFalse(taskManager.addTask(eachTask1)); // Adding the same task should return false
+        assertTrue(taskManager.addTask(eachTask2));
 
         // Add PersonalTask, WorkTask, TeamWorkTask
         assertTrue(taskManager.addTask(new PersonalTask(3, "Personal Task", "Personal Description")));
@@ -34,12 +34,12 @@ class TestTaskManager {
         // Creates a TaskManager instance
         TaskManager taskManager = new TaskManager();
         // Create two tasks with different IDs
-        Task task1 = new PersonalTask(1, "Task 1", "Personal Description");
-        Task task2 = new WorkTask(2, "Task 2", "Work Description");
+        Task eachTask1 = new PersonalTask(1, "Task 1", "Personal Description");
+        Task eachTask2 = new WorkTask(2, "Task 2", "Work Description");
 
         // Adds tasks to the TaskManager
-        taskManager.addTask(task1);
-        taskManager.addTask(task2);
+        taskManager.addTask(eachTask1);
+        taskManager.addTask(eachTask2);
 
         // Test for removing tasks from the TaskManager
         assertTrue(taskManager.removeTask(1));
@@ -66,17 +66,17 @@ class TestTaskManager {
         // Creates a TaskManager instance
         TaskManager taskManager = new TaskManager();
         // Creates two tasks with different IDs
-        Task task1 = new PersonalTask(1, "Task 1", "Personal Description");
-        Task task2 = new WorkTask(2, "Task 2", "Work Description");
+        Task eachTask1 = new PersonalTask(1, "Task 1", "Personal Description");
+        Task eachTask2 = new WorkTask(2, "Task 2", "Work Description");
 
         // Test for getting the size of the TaskManager
         assertEquals(0, taskManager.getSize());
 
         // Adds tasks to the TaskManager
-        taskManager.addTask(task1);
+        taskManager.addTask(eachTask1);
         assertEquals(1, taskManager.getSize());
 
-        taskManager.addTask(task2);
+        taskManager.addTask(eachTask2);
         assertEquals(2, taskManager.getSize());
 
         // Removes a task and check the size
@@ -102,17 +102,17 @@ class TestTaskManager {
         // Creates a TaskManager instance
         TaskManager taskManager = new TaskManager();
         // Creates two tasks with different IDs
-        Task task1 = new PersonalTask(1, "Task 1", "Personal Description");
-        Task task2 = new WorkTask(2, "Task 2", "Work Description");
+        Task eachTask1 = new PersonalTask(1, "Task 1", "Personal Description");
+        Task eachTask2 = new WorkTask(2, "Task 2", "Work Description");
 
         // Adding tasks to the TaskManager
-        taskManager.addTask(task1);
-        taskManager.addTask(task2);
+        taskManager.addTask(eachTask1);
+        taskManager.addTask(eachTask2);
 
         // Test for getting all tasks from the TaskManager
         assertEquals(2, taskManager.getAllTasks().size());
-        assertTrue(taskManager.getAllTasks().contains(task1));
-        assertTrue(taskManager.getAllTasks().contains(task2));
+        assertTrue(taskManager.getAllTasks().contains(eachTask1));
+        assertTrue(taskManager.getAllTasks().contains(eachTask2));
 
         // Add PersonalTask, WorkTask, TeamWorkTask
         taskManager.addTask(new PersonalTask(3, "Personal Task", "Personal Description"));

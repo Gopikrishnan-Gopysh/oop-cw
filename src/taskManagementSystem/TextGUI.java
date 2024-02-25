@@ -43,22 +43,22 @@ public class TextGUI {
     }
 
     private static void displayAllTasks(TaskManager taskManager) {
-        List<Task> tasks = taskManager.getAllTasks();
-        if (tasks.isEmpty()) {
+        List<Task> taskList = taskManager.getAllTasks();
+        if (taskList.isEmpty()) {
             System.out.println("No tasks available.");
         } else {
             System.out.println("All current tasks:");
-            for (Task task : tasks) {
-                System.out.println(task);
+            for (Task eachTask : taskList) {
+                System.out.println(eachTask);
             }
             System.out.println("\nReminder messages:" + taskManager.size());
             System.out.println();
-            for (Task task : taskManager.getAllTasks()) {
-                if (task instanceof Remindable) {
-                    if (task instanceof TeamWorkTask) {
-                        ((TeamWorkTask) (Remindable) task).remindUser();
+            for (Task eachTask : taskManager.getAllTasks()) {
+                if (eachTask instanceof Remindable) {
+                    if (eachTask instanceof TeamWorkTask) {
+                        ((TeamWorkTask) (Remindable) eachTask).remindUser();
                     } else {
-                        ((Remindable) task).remindUser();
+                        ((Remindable) eachTask).remindUser();
                     }
                 }
             }
@@ -163,7 +163,7 @@ public class TextGUI {
     }
 
     private static int getPositiveIntegerInput(Scanner scanner) {
-        int err = 0;
+        int err = 0; //no input error yet 
 
         while (true) {
             try {
@@ -172,7 +172,7 @@ public class TextGUI {
                 if (input.matches("^[1-9][0-9]*$")) { //regular expression (^ = start, [1-9] any no from 1-9, same for [0-9], * = 0 or more times, $ = end)
                     return Integer.parseInt(input);
                 } else {
-                    if (input.equalsIgnoreCase("H") && err == 1) {
+                    if (input.equalsIgnoreCase("H") && err == 1) { //if there is an input error
                         return -1; // or any other value to indicate an error
                     } else {
                         System.out.println("Invalid input. Please enter a positive whole number.");

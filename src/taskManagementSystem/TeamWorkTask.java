@@ -6,7 +6,7 @@ public class TeamWorkTask extends WorkTask implements Remindable{
 
     public TeamWorkTask(int id, String name, String teamName, String description) {
         super(id, name, description,"Teamwork");
-        this.teamName = teamName;
+        this.teamName = teamName; //"this" means the current instance of the class.
     }
 
     public String getTeamName() {
