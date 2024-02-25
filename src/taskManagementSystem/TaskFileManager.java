@@ -32,6 +32,8 @@ public class TaskFileManager {
         if (!file.exists()) {
             System.out.println("Welcome to Task Manager!");
             return;
+        } else {
+            System.out.println("Welcome to Task Manager! You have tasks saved in the file.");   
         }
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
