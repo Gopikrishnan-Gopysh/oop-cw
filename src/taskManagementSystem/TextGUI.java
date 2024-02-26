@@ -138,7 +138,7 @@ public class TextGUI {
 		System.out.print("Enter teamwork task description (Press enter to skip): ");
 		String description = scanner.nextLine();
 
-		TeamWorkTask newTask = new TeamWorkTask(id, name, description, teamName);
+		TeamWorkTask newTask = new TeamWorkTask(id, name,teamName,description);
 
 		if (taskManager.addTask(newTask)) {
 			System.out.println("Teamwork Task added successfully!");
